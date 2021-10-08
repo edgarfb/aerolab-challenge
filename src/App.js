@@ -41,7 +41,12 @@ function App() {
       <div className="products">
         {products &&
           products.map((pro) => (
-            <Card img={pro.img.url} name={pro.name} category={pro.category} />
+            <Card
+              img={pro.img.url}
+              name={pro.name}
+              category={pro.category}
+              cost={pro.cost}
+            />
           ))}
       </div>
     </div>
