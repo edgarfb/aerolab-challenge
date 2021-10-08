@@ -1,7 +1,8 @@
 import React from "react";
-import logo from "./assets/aerolab-logo.svg";
+
 import "./App.css";
 import Card from "./components/Card";
+import Header from "./components/Header";
 
 function App() {
   const [products, setProducts] = React.useState();
@@ -22,15 +23,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <header>
-        <div className="logo">
-          <img src={logo} alt="" />
-        </div>
-        <div className="user">
-          <div className="userName">John Kite</div>
-          <div className="userPoints">6000</div>
-        </div>
-      </header>
+      <Header />
 
       <div className="welcomeImage">
         <div className="welcome-text">

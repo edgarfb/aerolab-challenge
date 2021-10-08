@@ -1,0 +1,21 @@
+.header,
+.user,
+.userPoints {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header {
+  padding: 10px 20px;
+}
+
+.userPoints {
+  background-color: #ddd;
+  padding: 5px 20px;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+.userPoints img {
+  margin-left: 10px;
+  height: 1.5rem;
+}
