@@ -1,0 +1,16 @@
+.card {
+  /* padding: 10px; */
+  min-width: 276px;
+  height: 276px;
+  width: 276px;
+  min-height: 276px;
+  box-shadow: 2px 2px 5px 0px #ddd;
+}
+h5,
+h6 {
+  margin: 0;
+}
+.cardImg,
+.cardInfo {
+  padding: 10px;
+}
