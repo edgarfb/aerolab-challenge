@@ -39,6 +39,11 @@ function Sorter(props) {
         </div>
       </div>
       <div className={styles.next}>
+        {props.init > 0 && (
+          <Button className={styles.btnArrow} onClick={props.onPrevClick}>
+            <img src={arrowLeft} alt="" />
+          </Button>
+        )}
         <Button className={styles.btnArrow} onClick={props.onNextClick}>
           <img src={arrowRight} alt="" />
         </Button>
