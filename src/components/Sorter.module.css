@@ -3,4 +3,43 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.sorterLeft {
+  display: flex;
+  align-items: center;
+}
+.productAmount {
+  padding: 0.3rem 1rem;
+}
+.sortBy {
+  margin-left: 20px;
+}
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-radius: 20px;
+  border: none;
+}
+.btnActive {
+  padding: 0.5rem 1rem;
+  background-color: #6ee8ff;
+  color: white;
+  border-radius: 20px;
+  border: none;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #6ee8ff;
+  color: white;
+}
+
+.btnArrow {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: none;
+}
+.btnArrow:hover {
+  cursor: pointer;
 }
