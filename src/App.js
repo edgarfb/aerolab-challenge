@@ -4,13 +4,28 @@ import "./App.css";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Sorter from "./components/Sorter";
+import UserContext from "./context/user-context";
 
 function App() {
   const [products, setProducts] = React.useState();
   const [original, setOriginal] = React.useState();
-  let [init, setInit] = React.useState(0);
-  let [end, setEnd] = React.useState(16);
+  const [init, setInit] = React.useState(0);
+  const [end, setEnd] = React.useState(16);
+  const [user, setUser] = React.useState();
 
+  console.log("user", user);
+  React.useEffect(() => {
+    fetch("https://coding-challenge-api.aerolab.co/user/me", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQyNmQ4N2MxNmRiNDAwMWEzMWE0OGMiLCJpYXQiOjE2MzE3NDMzNjd9.fjleWcbC4nvNoj321BDxkJHJ_M3HLMUxjRr7hTjDxQc",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setUser({ ...data }));
+  }, []);
   function nextHandler() {
     if (end === products.length) {
       console.log("there is no way to go!");
@@ -68,7 +83,7 @@ function App() {
       });
   }, []);
   return (
-    <div className="App">
+    <UserContext.Provider value={{ ...user }}>
       <Header />
 
       <div className="welcomeImage">
@@ -100,7 +115,7 @@ function App() {
               />
             ))}
       </div>
-    </div>
+    </UserContext.Provider>
   );
 }
 

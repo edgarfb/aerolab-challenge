@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Sorter.module.css";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import arrowLeft from "../assets/icons/arrow-left.svg";
+import UserContext from "../context/user-context";
 
 function Button(props) {
   return (
@@ -18,6 +19,9 @@ function Button(props) {
 const labels = ["Most recent", "Lower price", "Highest price"];
 
 function Sorter(props) {
+  const userCtx = React.useContext(UserContext);
+
+  console.log("Context", userCtx);
   return (
     <div className={styles.sorter}>
       <div className={styles.sorterLeft}>
