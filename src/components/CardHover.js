@@ -10,7 +10,9 @@ function CardHover(props) {
           <span>{props.cost}</span>
           <img src={coin} alt="coin" />
         </div>
-        <button>Reddem now</button>
+        <button className={styles.btn} onClick={props.onClick}>
+          Reddem now
+        </button>
       </div>
     </div>
   );

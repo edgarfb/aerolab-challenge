@@ -11,7 +11,7 @@ function CardHover(props) {
           <span>{props.cost}</span>
           <img src={coin} alt="coin" />
         </div>
-        <button>You need {diff} more</button>
+        <button className={styles.btn}>You need {diff} more</button>
       </div>
     </div>
   );

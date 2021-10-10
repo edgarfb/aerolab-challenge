@@ -4,7 +4,7 @@ import coin from "../assets/icons/coin.svg";
 import styles from "./Header.module.css";
 import UserContext from "../context/user-context";
 
-function Header() {
+function Header(props) {
   const userCtx = React.useContext(UserContext);
   return (
     <header className={styles.header}>
@@ -12,6 +12,12 @@ function Header() {
         <img src={logo} alt="" />
       </div>
       <div className={styles.user}>
+        <div className="addPoints">
+          {/* <button onClick={props.onAddPoint}>Add points</button> */}
+        </div>
+        <div className={styles.history}>
+          {/* <button onClick={onViewHistory}>History</button> */}
+        </div>
         <div className={styles.userName}>{userCtx.name}</div>
         <div className={styles.userPoints}>
           {userCtx.points}

@@ -7,10 +7,33 @@ import CardHoverDisable from "./CardHoverDisable";
 function Card(props) {
   const userCtx = React.useContext(UserContext);
 
-  console.log("userCtx from Card", userCtx.name);
+  function addPointsHandler() {
+    const url = "https://coding-challenge-api.aerolab.co/user/points";
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQyNmQ4N2MxNmRiNDAwMWEzMWE0OGMiLCJpYXQiOjE2MzE3NDMzNjd9.fjleWcbC4nvNoj321BDxkJHJ_M3HLMUxjRr7hTjDxQc",
+      },
+      body: JSON.stringify({
+        amount: -1000,
+      }),
+    })
+      .then((res) => res.json())
+      .then((response) => console.log("Response from API", response))
+      .catch((error) => console.log(error.response));
+  }
+
   return (
     <div className={styles.card}>
-      {props.cost < userCtx.points && <CardHover cost={props.cost} />}
+      {props.cost <= userCtx.points && (
+        <CardHover
+          cost={props.cost}
+          onClick={() => props.onReddem(props.producId)}
+        />
+      )}
       {props.cost > userCtx.points && (
         <CardHoverDisable cost={props.cost} userPoints={userCtx.points} />
       )}
