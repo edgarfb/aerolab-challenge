@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import History from "./pages/History";
 import AppContext from "./context/app-context";
 import addPointsHandler from "./helpers/add-points";
+import MainContainer from "./components/MainContainer";
 
 function App() {
   const [products, setProducts] = React.useState();
@@ -119,14 +120,8 @@ function App() {
   return (
     <AppContext.Provider value={contextValues}>
       <Router>
-        <Header
-          onAddPoint={addPointsHandler}
-          // onViewHistory={viewHistoryHandler}
-        />
-
+        <Header onAddPoint={addPointsHandler} />
         <Switch>
-          {/* <Welcome /> */}
-
           <Route path="/" exact>
             <Home products={products} />
           </Route>
