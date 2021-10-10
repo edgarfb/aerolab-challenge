@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Sorter.module.css";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import arrowLeft from "../assets/icons/arrow-left.svg";
+import Pagination from "./Pagination";
+import AppContext from "../context/app-context";
 
 function Button(props) {
   return (
@@ -18,18 +20,18 @@ function Button(props) {
 const labels = ["Most recent", "Lower price", "Highest price"];
 
 function Sorter(props) {
+  const context = React.useContext(AppContext);
   return (
     <div className={styles.sorter}>
       <div className={styles.sorterLeft}>
-        <div className={styles.productAmount}>{props.end} of 32 products</div>
-
+        {/* <Pagination /> */}
         <div className={styles.sortBy}>
-          Sort by:{"   "}
+          <span className={styles.sortTxt}>Sort by:</span>
           {labels.map((label) => {
             return (
               <Button
                 onClick={() => {
-                  props.onSortProducts(label);
+                  context.sortProductsHandler(label);
                 }}
                 key={Math.random()}
                 label={label}
@@ -39,12 +41,12 @@ function Sorter(props) {
         </div>
       </div>
       <div className={styles.next}>
-        {props.init > 0 && (
-          <Button className={styles.btnArrow} onClick={props.onPrevClick}>
+        {context.init > 0 && (
+          <Button className={styles.btnArrow} onClick={context.prevHandler}>
             <img src={arrowLeft} alt="" />
           </Button>
         )}
-        <Button className={styles.btnArrow} onClick={props.onNextClick}>
+        <Button className={styles.btnArrow} onClick={context.nextHandler}>
           <img src={arrowRight} alt="" />
         </Button>
       </div>

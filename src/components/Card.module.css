@@ -6,10 +6,14 @@
   width: 276px;
   min-height: 276px;
   box-shadow: 2px 2px 5px 0px #ddd;
+  color: #666;
 }
 h5,
 h6 {
   margin: 0;
+}
+h6 {
+  color: #aaa;
 }
 .cardImg,
 .cardInfo {
@@ -19,5 +23,3 @@ h6 {
 .cardHoverDisable:hover {
   background-color: #ddd;
 }
-/* 
- */

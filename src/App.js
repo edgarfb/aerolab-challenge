@@ -1,10 +1,12 @@
 import React from "react";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
-import Card from "./components/Card";
 import Header from "./components/Header";
-import Sorter from "./components/Sorter";
-import UserContext from "./context/user-context";
+import Home from "./pages/Home";
+
+import History from "./pages/History";
+import AppContext from "./context/app-context";
+import addPointsHandler from "./helpers/add-points";
 
 function App() {
   const [products, setProducts] = React.useState();
@@ -104,42 +106,39 @@ function App() {
         setProducts([...data]);
       });
   }, []);
+
+  const contextValues = {
+    user: { ...user },
+    init,
+    end,
+    sortProductsHandler,
+    nextHandler,
+    prevHandler,
+    reddemHandler,
+  };
   return (
-    <UserContext.Provider value={{ ...user }}>
-      <Header />
+    <AppContext.Provider value={contextValues}>
+      <Router>
+        <Header
+          onAddPoint={addPointsHandler}
+          // onViewHistory={viewHistoryHandler}
+        />
 
-      <div className="welcomeImage">
-        <div className="welcome-text">
-          <h3>Electronics</h3>
-        </div>
-      </div>
+        <Switch>
+          {/* <Welcome /> */}
 
-      {/* init prop to display the arrow left */}
-      {/* end prop to display the amout of products */}
-      <Sorter
-        init={init}
-        end={end}
-        onSortProducts={sortProductsHandler}
-        onNextClick={nextHandler}
-        onPrevClick={prevHandler}
-      />
-      <div className="products">
-        {products &&
-          products
-            .slice(init, end)
-            .map((pro) => (
-              <Card
-                onReddem={reddemHandler}
-                producId={pro._id}
-                key={pro._id}
-                img={pro.img.url}
-                name={pro.name}
-                category={pro.category}
-                cost={pro.cost}
-              />
-            ))}
-      </div>
-    </UserContext.Provider>
+          <Route path="/" exact>
+            <Home products={products} />
+          </Route>
+          <Route path="/history">
+            <History isReddem={isReddem} />
+          </Route>
+          <Route path="/history">
+            <History />
+          </Route>
+        </Switch>
+      </Router>
+    </AppContext.Provider>
   );
 }
 

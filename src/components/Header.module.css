@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #666;
 }
 .header {
   padding: 10px 20px;
@@ -18,4 +19,9 @@
 .userPoints img {
   margin-left: 10px;
   height: 1.5rem;
+}
+
+.userName a {
+  text-decoration: none;
+  color: #666;
 }
