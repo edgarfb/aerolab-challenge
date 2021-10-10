@@ -1,25 +1,19 @@
 import React from "react";
 import styles from "./Card.module.css";
-import coin from "../assets/icons/coin.svg";
-
-function CardHover(props) {
-  return (
-    <div className={styles.cardHover}>
-      <div className={styles.cardInfoInner}>
-        <div className={styles.costBox}>
-          <span>{props.cost}</span>
-          <img src={coin} alt="coin" />
-        </div>
-        <button>Reddem now</button>
-      </div>
-    </div>
-  );
-}
+import UserContext from "../context/user-context";
+import CardHover from "./CardHover";
+import CardHoverDisable from "./CardHoverDisable";
 
 function Card(props) {
+  const userCtx = React.useContext(UserContext);
+
+  console.log("userCtx from Card", userCtx.name);
   return (
     <div className={styles.card}>
-      <CardHover cost={props.cost} />
+      {props.cost < userCtx.points && <CardHover cost={props.cost} />}
+      {props.cost > userCtx.points && (
+        <CardHoverDisable cost={props.cost} userPoints={userCtx.points} />
+      )}
       <div className={styles.cardImg}>
         <img src={props.img} alt={props.name} />
       </div>
