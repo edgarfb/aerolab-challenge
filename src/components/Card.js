@@ -18,9 +18,10 @@ function Card(props) {
       {props.cost > context.user.points && (
         <CardHoverDisable cost={props.cost} userPoints={context.user.points} />
       )}
-      <div className={styles.cardImg}>
+      <picture className={styles.cardImg}>
+        <source src={`${props.imgHd} x2`} />
         <img src={props.img} alt={props.name} />
-      </div>
+      </picture>
       <div className={styles.cardInfo}>
         <h6>{props.category}</h6>
         <h5>{props.name}</h5>

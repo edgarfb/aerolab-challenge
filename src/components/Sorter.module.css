@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .sorterLeft {
@@ -18,6 +19,10 @@
 .sortBy {
   color: #666;
 }
+.productAmount {
+  display: none;
+}
+
 .btn {
   padding: 0.5rem 1rem;
   background-color: #eee;
@@ -51,7 +56,6 @@
 
 @media (min-width: 768px) {
   .sorter {
-    width: 1176px;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -60,5 +64,10 @@
   }
   .sortTxt {
     display: inline-block;
+  }
+  .productAmount {
+    display: block;
+    padding: 0rem 1rem;
+    color: #666;
   }
 }
