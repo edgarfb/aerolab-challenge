@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Sorter.module.css";
 import arrowRight from "../assets/icons/arrow-right.svg";
 import arrowLeft from "../assets/icons/arrow-left.svg";
-import Pagination from "./Pagination";
 import AppContext from "../context/app-context";
 
 function Button(props) {
@@ -25,6 +24,7 @@ function Sorter(props) {
     <div className={styles.sorter}>
       <div className={styles.sorterLeft}>
         {/* <Pagination /> */}
+        <div className={styles.productAmount}>{context.end} of 32 products</div>
         <div className={styles.sortBy}>
           <span className={styles.sortTxt}>Sort by:</span>
           {labels.map((label) => {

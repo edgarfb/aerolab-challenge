@@ -17,6 +17,7 @@ function Products(props) {
                 producId={pro._id}
                 key={pro._id}
                 img={pro.img.url}
+                imgHd={pro.img.hdUrl}
                 name={pro.name}
                 category={pro.category}
                 cost={pro.cost}

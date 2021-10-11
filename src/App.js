@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import History from "./pages/History";
 import AppContext from "./context/app-context";
 import addPointsHandler from "./helpers/add-points";
-import MainContainer from "./components/MainContainer";
 
 function App() {
   const [products, setProducts] = React.useState();
@@ -16,6 +15,8 @@ function App() {
   const [end, setEnd] = React.useState(16);
   const [user, setUser] = React.useState();
   const [isReddem, setIsReddem] = React.useState();
+
+  console.log(products);
 
   React.useEffect(() => {
     fetch("https://coding-challenge-api.aerolab.co/user/me", {
