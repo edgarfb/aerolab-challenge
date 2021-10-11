@@ -21,7 +21,7 @@ function Header(props) {
         </div> */}
 
         <div className={styles.userName}>
-          <Link to="/history">{context.user.name}</Link>
+          <Link to="/redeem-history">{context.user.name}</Link>
         </div>
         <div className={styles.userPoints}>
           {context.user.points}

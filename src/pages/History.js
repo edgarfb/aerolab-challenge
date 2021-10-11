@@ -5,8 +5,6 @@ import HistoryCard from "../components/HistoryCard";
 function Histoy(props) {
   const [reddenHistory, setReddemHistory] = React.useState();
 
-  console.log(reddenHistory);
-
   React.useEffect(() => {
     fetch("https://coding-challenge-api.aerolab.co/user/history", {
       headers: {

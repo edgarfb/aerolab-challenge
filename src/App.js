@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -22,7 +17,7 @@ function App() {
   const [end, setEnd] = React.useState(16);
   const [user, setUser] = React.useState();
   const [isCongrats, setIsCongrats] = React.useState(false);
-  const history = useHistory();
+
   // I use isReedem to update the user info when a product is reddem
   // Be awere it's not a boolean, it use the "productId" and pass it value as dependency to React.useEffect
   const [isReedem, setIsRedeem] = React.useState();
@@ -115,7 +110,7 @@ function App() {
       .then((res) => res.json())
       .then((response) => {
         setIsRedeem(productId);
-        history.replace("/history");
+        congratsHandler();
         console.log("Response from API", response);
       })
       .catch((error) => console.log(error.response));
@@ -123,8 +118,10 @@ function App() {
 
   function congratsHandler() {
     setIsCongrats(true);
-    setTimeout(() => setIsCongrats(false), 2000);
-    console.log("hi from congrats");
+  }
+
+  function closeCongratsMessage() {
+    setIsCongrats(false);
   }
 
   const contextValues = {
@@ -140,39 +137,17 @@ function App() {
   };
   return (
     <AppContext.Provider value={contextValues}>
-      {isCongrats && <Congrats />}
-      {!isCongrats && (
-        <Router>
-          <Header onAddPoint={addPointsHandler} />
-          <Switch>
-            <Route path="/" exact>
-              <Home products={products} />
-            </Route>
-            <Route path="/history">
-              <History isReedem={isReedem} />
-            </Route>
-            <Route path="/history">
-              <History />
-            </Route>
-          </Switch>
-        </Router>
-      )}
-      {/* {!isCongrats && (
-        <Router>
-          <Header onAddPoint={addPointsHandler} />
-          <Switch>
-            <Route path="/" exact>
-              <Home products={products} />
-            </Route>
-            <Route path="/history">
-              <History isReedem={isReedem} />
-            </Route>
-            <Route path="/history">
-              <History />
-            </Route>
-          </Switch>
-        </Router>
-      )} */}
+      {isCongrats && <Congrats onCloseCongratsMessage={closeCongratsMessage} />}
+
+      <Header onAddPoint={addPointsHandler} />
+      <Switch>
+        <Route path="/" exact>
+          <Home products={products} />
+        </Route>
+        <Route path="/redeem-history">
+          <History isReedem={isReedem} />
+        </Route>
+      </Switch>
     </AppContext.Provider>
   );
 }
