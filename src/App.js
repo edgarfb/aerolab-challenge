@@ -1,19 +1,28 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 
 import History from "./pages/History";
+import Congrats from "./components/Congrats";
 import AppContext from "./context/app-context";
 import addPointsHandler from "./helpers/add-points";
 
 function App() {
   const [products, setProducts] = React.useState();
   const [original, setOriginal] = React.useState();
+
   const [init, setInit] = React.useState(0);
   const [end, setEnd] = React.useState(16);
   const [user, setUser] = React.useState();
+  const [isCongrats, setIsCongrats] = React.useState(false);
+  const history = useHistory();
   // I use isReedem to update the user info when a product is reddem
   // Be awere it's not a boolean, it use the "productId" and pass it value as dependency to React.useEffect
   const [isReedem, setIsRedeem] = React.useState();
@@ -89,7 +98,7 @@ function App() {
     }
   }
 
-  function reddemHandler(producId) {
+  function reddemHandler(productId) {
     const url = "https://coding-challenge-api.aerolab.co/redeem";
     fetch(url, {
       method: "post",
@@ -100,15 +109,22 @@ function App() {
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQyNmQ4N2MxNmRiNDAwMWEzMWE0OGMiLCJpYXQiOjE2MzE3NDMzNjd9.fjleWcbC4nvNoj321BDxkJHJ_M3HLMUxjRr7hTjDxQc",
       },
       body: JSON.stringify({
-        productId: producId,
+        productId: productId,
       }),
     })
       .then((res) => res.json())
       .then((response) => {
-        setIsRedeem(producId);
+        setIsRedeem(productId);
+        history.replace("/history");
         console.log("Response from API", response);
       })
       .catch((error) => console.log(error.response));
+  }
+
+  function congratsHandler() {
+    setIsCongrats(true);
+    setTimeout(() => setIsCongrats(false), 2000);
+    console.log("hi from congrats");
   }
 
   const contextValues = {
@@ -119,23 +135,44 @@ function App() {
     nextHandler,
     prevHandler,
     reddemHandler,
+    congratsHandler,
+    isCongrats,
   };
   return (
     <AppContext.Provider value={contextValues}>
-      <Router>
-        <Header onAddPoint={addPointsHandler} />
-        <Switch>
-          <Route path="/" exact>
-            <Home products={products} />
-          </Route>
-          <Route path="/history">
-            <History isReedem={isReedem} />
-          </Route>
-          <Route path="/history">
-            <History />
-          </Route>
-        </Switch>
-      </Router>
+      {isCongrats && <Congrats />}
+      {!isCongrats && (
+        <Router>
+          <Header onAddPoint={addPointsHandler} />
+          <Switch>
+            <Route path="/" exact>
+              <Home products={products} />
+            </Route>
+            <Route path="/history">
+              <History isReedem={isReedem} />
+            </Route>
+            <Route path="/history">
+              <History />
+            </Route>
+          </Switch>
+        </Router>
+      )}
+      {/* {!isCongrats && (
+        <Router>
+          <Header onAddPoint={addPointsHandler} />
+          <Switch>
+            <Route path="/" exact>
+              <Home products={products} />
+            </Route>
+            <Route path="/history">
+              <History isReedem={isReedem} />
+            </Route>
+            <Route path="/history">
+              <History />
+            </Route>
+          </Switch>
+        </Router>
+      )} */}
     </AppContext.Provider>
   );
 }

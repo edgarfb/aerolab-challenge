@@ -12,7 +12,8 @@ function Card(props) {
       {props.cost <= context.user.points && (
         <CardHover
           cost={props.cost}
-          onClick={() => context.reddemHandler(props.producId)}
+          // onClick={() => context.reddemHandler(props.producId)}
+          onClick={context.congratsHandler}
         />
       )}
       {props.cost > context.user.points && (

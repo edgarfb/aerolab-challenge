@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./HistoryCard.module.css";
 
 function HistoryCard(props) {
-  function toDate(propDate) {
+  function formatDateHandler(propDate) {
     let date = Date.parse(propDate);
     let newDate = new Date(date);
 
@@ -18,7 +18,7 @@ function HistoryCard(props) {
         <h5>{props.name}</h5>
         <h6>Category: {props.category}</h6>
         <h6>Cost: {props.cost}</h6>
-        <h6>Redeem date: {toDate(props.date)}</h6>
+        <h6>Redeem date: {formatDateHandler(props.date)}</h6>
       </div>
     </div>
   );
