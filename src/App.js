@@ -14,10 +14,11 @@ function App() {
   const [init, setInit] = React.useState(0);
   const [end, setEnd] = React.useState(16);
   const [user, setUser] = React.useState();
-  const [isReddem, setIsReddem] = React.useState();
+  // I use isReedem to update the user info when a product is reddem
+  // Be awere it's not a boolean, it use the "productId" and pass it value as dependency to React.useEffect
+  const [isReedem, setIsRedeem] = React.useState();
 
-  console.log(products);
-
+  // request the user and store it on "user" state
   React.useEffect(() => {
     fetch("https://coding-challenge-api.aerolab.co/user/me", {
       headers: {
@@ -29,7 +30,25 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setUser({ ...data }));
-  }, [isReddem]);
+  }, [isReedem]);
+
+  // request the products and store it on "products" state
+  React.useEffect(() => {
+    fetch("https://coding-challenge-api.aerolab.co/products", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQyNmQ4N2MxNmRiNDAwMWEzMWE0OGMiLCJpYXQiOjE2MzE3NDMzNjd9.fjleWcbC4nvNoj321BDxkJHJ_M3HLMUxjRr7hTjDxQc",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setOriginal([...data]);
+
+        setProducts([...data]);
+      });
+  }, []);
   function nextHandler() {
     if (end === products.length) {
       console.log("there is no way to go!");
@@ -86,28 +105,11 @@ function App() {
     })
       .then((res) => res.json())
       .then((response) => {
-        setIsReddem(producId);
+        setIsRedeem(producId);
         console.log("Response from API", response);
       })
       .catch((error) => console.log(error.response));
   }
-
-  React.useEffect(() => {
-    fetch("https://coding-challenge-api.aerolab.co/products", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTQyNmQ4N2MxNmRiNDAwMWEzMWE0OGMiLCJpYXQiOjE2MzE3NDMzNjd9.fjleWcbC4nvNoj321BDxkJHJ_M3HLMUxjRr7hTjDxQc",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setOriginal([...data]);
-
-        setProducts([...data]);
-      });
-  }, []);
 
   const contextValues = {
     user: { ...user },
@@ -127,7 +129,7 @@ function App() {
             <Home products={products} />
           </Route>
           <Route path="/history">
-            <History isReddem={isReddem} />
+            <History isReedem={isReedem} />
           </Route>
           <Route path="/history">
             <History />

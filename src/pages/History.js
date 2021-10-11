@@ -1,8 +1,11 @@
 import React from "react";
-// import styles from "./Histoy.module.css";
+import styles from "./History.module.css";
+import HistoryCard from "../components/HistoryCard";
 
 function Histoy(props) {
   const [reddenHistory, setReddemHistory] = React.useState();
+
+  console.log(reddenHistory);
 
   React.useEffect(() => {
     fetch("https://coding-challenge-api.aerolab.co/user/history", {
@@ -14,12 +17,24 @@ function Histoy(props) {
       },
     })
       .then((res) => res.json())
-      .then((historyReddem) => console.log("History reddem", historyReddem))
+      .then((historyReddem) => setReddemHistory([...historyReddem]))
       .catch((error) => console.error(error));
   }, []);
   return (
-    <div>
-      <h1>Hello</h1>
+    <div className={styles.history}>
+      {reddenHistory &&
+        reddenHistory.map((pro) => (
+          <HistoryCard
+            producId={pro._id}
+            key={pro.createDate}
+            img={pro.img.url}
+            imgHd={pro.img.hdUrl}
+            name={pro.name}
+            category={pro.category}
+            cost={pro.cost}
+            date={pro.createDate}
+          />
+        ))}
     </div>
   );
 }

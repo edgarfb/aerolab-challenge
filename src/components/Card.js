@@ -19,7 +19,7 @@ function Card(props) {
         <CardHoverDisable cost={props.cost} userPoints={context.user.points} />
       )}
       <picture className={styles.cardImg}>
-        <source src={`${props.imgHd} x2`} />
+        <source srcSet={props.imgHd + " 2x"} />
         <img src={props.img} alt={props.name} />
       </picture>
       <div className={styles.cardInfo}>
