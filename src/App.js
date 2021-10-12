@@ -8,7 +8,6 @@ import NotFound from "./pages/NotFound";
 import History from "./pages/History";
 import Congrats from "./components/Congrats";
 import AppContext from "./context/app-context";
-import addPointsHandler from "./helpers/add-points";
 
 function App() {
   const [products, setProducts] = React.useState();
@@ -140,7 +139,7 @@ function App() {
     <AppContext.Provider value={contextValues}>
       {isCongrats && <Congrats onCloseCongratsMessage={closeCongratsMessage} />}
 
-      <Header onAddPoint={addPointsHandler} />
+      <Header />
       <Switch>
         <Route path="/" exact>
           <Home products={products} />

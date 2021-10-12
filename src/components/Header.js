@@ -16,10 +16,6 @@ function Header(props) {
         </Link>
       </div>
       <div className={styles.user}>
-        {/* <div className="addPoints">
-          <button onClick={props.onAddPoint}>Add points</button>
-        </div> */}
-
         <div className={styles.userName}>
           <Link to="/redeem-history">{context.user.name}</Link>
         </div>

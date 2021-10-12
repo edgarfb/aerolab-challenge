@@ -13,6 +13,9 @@ export default function addPointsHandler() {
     }),
   })
     .then((res) => res.json())
-    .then((response) => console.log("Response from API", response))
+    .then((response) => {
+      console.log("Response from API", response);
+      alert("You add 1000 points, refresh the page to see the changes");
+    })
     .catch((error) => console.log(error.response));
 }
