@@ -3,6 +3,7 @@ import styles from "./Card.module.css";
 import AppContext from "../context/app-context";
 import CardHover from "./CardHover";
 import CardHoverDisable from "./CardHoverDisable";
+import coin from "../assets/icons/coin.svg";
 
 function Card(props) {
   const context = React.useContext(AppContext);
@@ -18,6 +19,14 @@ function Card(props) {
       )}
       {props.cost > context.user.points && (
         <CardHoverDisable cost={props.cost} userPoints={context.user.points} />
+      )}
+      {props.cost > context.user.points && (
+        <div className={styles.notAvailable}>
+          <div className={styles.notAvailableInner}>
+            <span>You need {props.cost}</span>
+            <img src={coin} alt="" />
+          </div>
+        </div>
       )}
       <picture className={styles.cardImg}>
         <source srcSet={props.imgHd + " 2x"} />

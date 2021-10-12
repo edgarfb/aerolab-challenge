@@ -7,11 +7,7 @@
   width: 276px;
   min-height: 276px;
   opacity: 0;
-  /* cursor: pointer;
-    background-color: #6ee8ff;
-    opacity: 0.9; */
-
-  /* box-shadow: 2px 2px 5px 0px #ddd; */
+  z-index: 10;
 }
 .cardHover:hover {
   cursor: pointer;

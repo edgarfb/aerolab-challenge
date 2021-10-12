@@ -23,3 +23,27 @@ h6 {
 .cardHoverDisable:hover {
   background-color: #ddd;
 }
+
+.notAvailable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.8rem;
+  color: white;
+  background-color: #aaa;
+  padding: 3px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  opacity: 0.9;
+}
+.notAvailableInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notAvailableInner img {
+  margin-left: 10px;
+  height: 1.8rem;
+}
