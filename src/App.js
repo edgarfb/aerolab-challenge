@@ -3,7 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-
+import AddPoints from "./pages/AddPoints";
+import NotFound from "./pages/NotFound";
 import History from "./pages/History";
 import Congrats from "./components/Congrats";
 import AppContext from "./context/app-context";
@@ -146,6 +147,12 @@ function App() {
         </Route>
         <Route path="/redeem-history">
           <History isReedem={isReedem} />
+        </Route>
+        <Route path="/add-points">
+          <AddPoints />
+        </Route>
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
     </AppContext.Provider>

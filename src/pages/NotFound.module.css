@@ -1,0 +1,57 @@
+.notFound {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  background: rgb(29, 27, 26);
+  height: 100vh;
+}
+
+.logo {
+  display: flex;
+  padding: 10px 20px;
+}
+
+.logo img {
+  width: 100%;
+}
+
+figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notFoundImage {
+  width: 90%;
+}
+.notFoundImage img {
+  width: 100%;
+}
+
+.btnBox {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  font-size: 0.8rem;
+  color: white;
+  background-color: rgb(255 120 0);
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(245 136 39);
+}
+
+@media (min-width: 768px) {
+  .notFoundImage {
+    width: 40%;
+  }
+}
