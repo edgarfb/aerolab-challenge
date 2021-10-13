@@ -19,3 +19,15 @@ I'm a Self-taught Front End Developer in continuous development, on this days I'
 
 
 <br>
+
+### The challenge
+
+#### Technologies
+- ReactJS
+- CSS Module
+
+### Paths
+- / (home)
+- /redeem-history
+- /anything-else (throw 404 page like Aerolab 404 page)
+- /add-points (just for add points to the user, not protected)
